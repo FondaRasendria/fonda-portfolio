@@ -21,6 +21,15 @@
 
 ### Screenshot: Mobile
 
+![Mobile 1](/assets/mobile_1.png "mobile_1")
+![Mobile 2](/assets/mobile_2.png "mobile_2")
+![Mobile 3](/assets/mobile_3.png "mobile_3")
+![Mobile 4](/assets/mobile_4.png "mobile_4")
+![Mobile 5](/assets/mobile_5.png "mobile_5")
+![Mobile 6](/assets/mobile_6.png "mobile_6")
+![Mobile 7](/assets/mobile_7.png "mobile_7")
+![Mobile 8](/assets/mobile_8.png "mobile_8")
+
 ---
 
 ### What I Learned
@@ -36,3 +45,6 @@
 
 Challenge 1: [AI masih belum bisa membuat konsep desain yang benar benar baru]
 How I Solved: [Memberikan referensi dari hal unik yang mungkin AI tidak pikirkan]
+
+Challenge 2: [Masih ada perlu penyesuaian ulang di navigation bar]
+How I Solved: [Memberikan instruksi untuk menambahkan hamburger navigation saat menggunakan halaman mobile]

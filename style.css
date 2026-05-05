@@ -81,6 +81,8 @@ a:hover {
     border-bottom: 2px solid var(--neon-magenta);
     backdrop-filter: blur(10px);
     background-color: rgba(13, 2, 33, 0.95);
+    width: 100%;
+    overflow: hidden;
 }
 
 .nav-container {
@@ -98,6 +100,8 @@ a:hover {
     font-weight: 700;
     color: var(--neon-magenta);
     transition: all var(--transition-normal);
+    z-index: 1002;
+    position: relative;
 }
 
 .nav-logo:hover {
@@ -134,18 +138,89 @@ a:hover {
     width: 100%;
 }
 
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    gap: 6px;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--neon-magenta);
+    border-radius: 2px;
+    transition: all var(--transition-normal);
+    transform-origin: center;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(10px, 10px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+.hamburger:hover span {
+    background: var(--cyan-accent);
+    box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+}
+
 /* Mobile Navigation */
 @media (max-width: 768px) {
-    .nav-menu {
-        flex-direction: column;
-        gap: var(--spacing-sm);
-        font-size: 0.8rem;
+    .hamburger {
+        display: flex;
     }
     
     .nav-container {
-        flex-direction: column;
-        gap: var(--spacing-md);
         padding: var(--spacing-sm);
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(135deg, var(--obsidian-black) 0%, #1a0033 100%);
+        border-bottom: 2px solid var(--neon-magenta);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    .nav-menu.active {
+        max-height: 240px;
+        opacity: 1;
+        padding: var(--spacing-md) 0;
+        pointer-events: auto;
+    }
+    
+    .nav-link {
+        font-size: 0.9rem;
+        display: block;
+        padding: var(--spacing-xs) var(--spacing-md);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
 }
 
@@ -268,19 +343,30 @@ a:hover {
 @media (max-width: 768px) {
     .hero {
         min-height: auto;
-        padding: var(--spacing-xl) var(--spacing-md);
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+    
+    .hero-content {
+        padding-top: var(--spacing-md);
+    }
+    
+    .hero-image {
+        width: 100px;
+        height: 100px;
     }
     
     .hero-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: var(--spacing-xs);
     }
     
     .hero-subtitle {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        margin-bottom: var(--spacing-md);
     }
     
     .hero-description {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 }
 
@@ -770,16 +856,18 @@ main > section {
 
 @media (max-width: 768px) {
     :root {
-        --spacing-xl: 2rem;
-        --spacing-2xl: 2.5rem;
+        --spacing-lg: 1.5rem;
+        --spacing-xl: 1.5rem;
+        --spacing-2xl: 2rem;
     }
     
     main > section {
-        padding: var(--spacing-xl) var(--spacing-md);
+        padding: var(--spacing-lg) var(--spacing-md);
     }
     
     .section-header h2 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        margin-bottom: var(--spacing-lg);
     }
     
     .projects-grid {
@@ -788,6 +876,7 @@ main > section {
     
     .skills-categories {
         grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
     }
     
     .contact-links {
@@ -797,17 +886,32 @@ main > section {
 
 @media (max-width: 480px) {
     :root {
-        --spacing-lg: 1.5rem;
+        --spacing-sm: 0.75rem;
+        --spacing-md: 1rem;
+        --spacing-lg: 1.25rem;
         --spacing-xl: 1.5rem;
         --spacing-2xl: 2rem;
     }
     
+    .nav-logo {
+        font-size: 1.2rem;
+    }
+    
+    .hamburger {
+        padding: var(--spacing-xs);
+    }
+    
+    .hamburger span {
+        width: 20px;
+        height: 2.5px;
+    }
+    
     .hero-title {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
     
     .section-header h2 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
     
     .skills-categories {

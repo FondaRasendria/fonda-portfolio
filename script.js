@@ -1,4 +1,47 @@
 // ===================================
+// HAMBURGER MENU FUNCTIONALITY
+// ===================================
+
+class HamburgerMenu {
+    constructor() {
+        this.hamburger = document.querySelector('.hamburger');
+        this.navMenu = document.querySelector('.nav-menu');
+        this.navLinks = document.querySelectorAll('.nav-link');
+        this.init();
+    }
+
+    init() {
+        if (this.hamburger) {
+            this.hamburger.addEventListener('click', () => this.toggle());
+        }
+
+        // Close menu when clicking on a nav link
+        this.navLinks.forEach(link => {
+            link.addEventListener('click', () => this.close());
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.navbar')) {
+                this.close();
+            }
+        });
+    }
+
+    toggle() {
+        this.hamburger.classList.toggle('active');
+        this.navMenu.classList.toggle('active');
+        this.hamburger.setAttribute('aria-expanded', this.hamburger.classList.contains('active'));
+    }
+
+    close() {
+        this.hamburger.classList.remove('active');
+        this.navMenu.classList.remove('active');
+        this.hamburger.setAttribute('aria-expanded', 'false');
+    }
+}
+
+// ===================================
 // SMOOTH SCROLLING ENHANCEMENT
 // ===================================
 
@@ -213,6 +256,7 @@ class CursorGlow {
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all features
+    new HamburgerMenu();
     new SkillConstellation();
     new ScrollAnimations();
     new NavigationHandler();
